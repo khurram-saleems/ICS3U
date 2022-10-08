@@ -2,7 +2,7 @@
 # Program 3: Multiple Choice Quiz Questions
 #
 # Khurram Shaikh
-# Friday, October 3, 2022
+# Friday, October 7, 2022
 #
 # This program asks user to respond to a multiple choice question,
 # displays a personalized sentence for each selection
