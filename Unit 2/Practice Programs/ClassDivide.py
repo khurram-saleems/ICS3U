@@ -14,10 +14,10 @@ lastName=input("Enter your last name: ")
 
 # If the starting character of last name
 # is between 'A' and 'H' notify group 1  
-if (lastName[0]>="A" and lastName[0]<="H"):
+if (lastName>="A" and lastName<="H"):
     print("\nYou are in group 1, your last name is between 'A' and 'H'")
 
 # If the starting chaaracter of last name 
 # is betewen 'I' and 'Z' notify group 2
-elif(lastName[0]>="I" and lastName[0]<="Z"):
+elif(lastName>="I" and lastName<="Z"):
     print("\nYou are in group 2, your last name is between 'I' and 'Z'.")
