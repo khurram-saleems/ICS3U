@@ -11,7 +11,7 @@
 while True:
     
     # Ask user what 5^2 is
-    answer = (input("What is 5^2? Enter 'A','B','C','D','E'\n(A) 50\n(B) 42\n(C) 125\n(D) 75\n(E) 25\n"))
+    answer = input("What is 5^2? Enter 'A','B','C','D','E'\n(A) 50\n(B) 42\n(C) 125\n(D) 75\n(E) 25\n")
     
     # If answer is not between 'A' and 'E' 
     # Display error message
