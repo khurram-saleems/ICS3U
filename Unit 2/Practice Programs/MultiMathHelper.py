@@ -1,5 +1,5 @@
 # 10 Practice Programs 2
-# Program 5: Multi Math Helper
+# Program 6: Multi Math Helper
 #
 # Khurram Shaikh
 # Friday, October 14, 2022
