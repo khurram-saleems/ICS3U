@@ -1,11 +1,15 @@
-# 10 Practice Programs 2 
-# Program 3: Boxing Class
+# 10 Practice Programs 2
+# Program 5: Last First Name 
 #
 # Khurram Shaikh
 # Friday, October 14, 2022
 #
-# Prog desc
+# This program asks the user to enter 10 names, outputs 
+# the name that is alphebetically last.
 
-for i in range(11):
+low=""
+for x in range(10):
     name=input("Enter your first name: ")
-
+    if (name>low):    
+        low=name
+print("The name that is alphebetically last is {}".format(low))
