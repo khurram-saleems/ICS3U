@@ -22,7 +22,7 @@ while True:
         # Ask for amount of students
         students=int(input("Enter amount of students ('0' to exit): "))
         
-        # If amount is not a positive number display error message
+        # If amount is a negative number display error message
         if (students>=0):
              break
         print("Error invalid student amount, enter a positive value!")
@@ -42,7 +42,7 @@ while True:
         while True:
             
             # Ask user for height
-            height=int(input(""))
+            height=float(input(""))
 
             # If height is less than 150 and greater than 220 
             # display error message
@@ -61,7 +61,7 @@ while True:
     
     # If classes are greater than 1 display total classes 
     if (classes>1):
-        print("and a total of {} classes".format(classes))    
+        print("and a total of {} classes.".format(classes))    
     
     # Start while loop 
     while True:
