@@ -5,7 +5,9 @@
 #           Date | Wednesday, October 19, 2022
 #                |
 #    Description | This program asks for the heights of students in 
-#                | a class, then displays the class's average height.
+#                | a class, then displays the class's average height
+#                | to one decimal place. Program continues to run 
+#                | until user exits, displays total classes.
 
 classes=0
 
