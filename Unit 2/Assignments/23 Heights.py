@@ -14,7 +14,7 @@ classes=0
 # Start infinite loop
 while True: 
     sum=0
-    print("{:*^80s}".format("Class Average Height Calculator"))
+    print("{:-^80s}".format("Class Average Height Calculator"))
     
     # Start infinite loop in case user enters invalid value
     while True:
@@ -30,6 +30,8 @@ while True:
     # If amount is equal to 0 exit program
     if (students==0):
         break
+    
+    # Add one and store in classes
     classes+=1
     
     # Display prompt for height
@@ -57,15 +59,15 @@ while True:
     avg=sum/students
     
     # Display average height to one decimal place
-    print("Average height is: {:.1f} cm".format(avg),end=" ")
+    print("\nAverage height is: {:.1f} cm".format(avg),end=" ")
     
     # If classes are greater than 1 display total classes 
     if (classes>1):
         print("and a total of {} classes.".format(classes))    
     
-    # Start while loop 
+    # Start infinite loop 
     while True:
-        restart=input("\nWould you like calculate the average height again? Enter 'y' or 'n': ")
+        restart=input("\n\nWould you like calculate the average height again? Enter 'y' or 'n': ")
         
         # If user enter's an invalid value 
         # display error message
