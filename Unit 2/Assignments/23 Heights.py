@@ -7,7 +7,7 @@
 #    Description | This program asks for the heights of students in 
 #                | a class, then displays the class's average height.
 
-classes=1
+classes=0
 
 # Start infinite loop
 while True: 
@@ -22,12 +22,13 @@ while True:
         
         # If amount is not a positive number display error message
         if (students>=0):
-            break
+             break
         print("Error invalid student amount, enter a positive value!")
     
     # If amount is equal to 0 exit program
     if (students==0):
         break
+    classes+=1
     
     # Display prompt for height
     print("\nEnter height:")
@@ -49,6 +50,8 @@ while True:
         
         # Add height and store in sum
         sum+=height
+    
+    # Calculate average
     avg=sum/students
     
     # Display average height to one decimal place
@@ -57,12 +60,17 @@ while True:
     # If classes are greater than 1 display total classes 
     if (classes>1):
         print("and a total of {} classes".format(classes))    
+    
+    # Start while loop 
     while True:
         restart=input("\nWould you like calculate the average height again? Enter 'y' or 'n': ")
+        
+        # If user enter's an invalid value 
+        # display error message
         if (restart=='n' or restart=='y'):
             break
         print("Error invalid response, enter 'y' or 'n'.")
+    
+    # If user enter's 'n' exit program
     if (restart=='n'):
         break
-    else:
-        classes+=1
