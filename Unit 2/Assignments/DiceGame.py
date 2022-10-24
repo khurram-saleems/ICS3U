@@ -25,36 +25,36 @@ def diceRoll():
     global roll
     dice1,dice2=random.randint(1,6),random.randint(1,6)
     roll=dice1+dice2    
-def asciiArt(n):
+def asciiArt(diceVal):
     """Displays ASCII art of the dice, based on 
     generated number.
-    n: randomly generated dice values
+    diceVal: randomly generated dice values
     """
-    if (n==1):
+    if (diceVal==1):
         print(" ------- ")
         print("|       |")
         print("|   o   |")
         print("|       |")
         print(" ------- ")
-    elif (n==2):
+    elif (diceVal==2):
         print(" ------- ")
         print("|      o|")
         print("|       |")
         print("|o      |")
         print(" ------- ")
-    elif (n==3):
+    elif (diceVal==3):
         print(" ------- ")
         print("|      o|")
         print("|   o   |")
         print("|o      |")
         print(" ------- ")
-    elif (n==4):
+    elif (diceVal==4):
         print(" ------- ")
         print("|o     o|")
         print("|       |")
         print("|o     o|")
         print(" ------- ")
-    elif (n==5):
+    elif (diceVal==5):
         print(" ------- ")
         print("|o     o|")
         print("|   o   |")
@@ -66,6 +66,7 @@ def asciiArt(n):
         print("|o     o|")
         print("|o     o|")
         print(" ------- ")
+
 # Initialize money to 100 and point to 0
 money,point=100,0
 print("{:*^80s}".format("Las Vegas Craps Casino"))
@@ -100,7 +101,7 @@ while True:
             break
         print("Error, invalid value! Enter amount that you can afford and not less than 0.")
     
-    # If user enter's 0 as bet, exit program
+    # If user enter 0 as bet, exit program
     if (bet==0):
         break
     
@@ -108,7 +109,7 @@ while True:
     # of two dices
     diceRoll()
 
-    # Display the two random number's and the roll
+    # Display the two random numbers and the roll
     print("\nYou rolled a {} and a {}, that's {} {}.".format(dice1,dice2,roll,name))
     
     # Calls function while passing in the value 
