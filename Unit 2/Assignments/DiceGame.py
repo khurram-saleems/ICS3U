@@ -7,43 +7,38 @@
 #    Description | This program simulates the game Craps.
 
 import random    
-
-def diceAdd():
-
 def diceRoll():
-    # Generate two random numbers from 1,6
+    global dice1
+    global dice2 
+    global roll
     dice1,dice2=random.randint(1,6),random.randint(1,6)
-    
-    # Add and store in roll
-    roll=dice1+dice2
-    return roll
-
-def asciiArt():
-    if (roll==1):
+    roll=dice1+dice2    
+def asciiArt(n):
+    if (n==1):
         print(" ------- ")
         print("|       |")
         print("|   o   |")
         print("|       |")
         print(" ------- ")
-    elif (roll==2):
+    elif (n==2):
         print(" ------- ")
         print("|      o|")
         print("|       |")
         print("|o      |")
         print(" ------- ")
-    elif (roll==3):
+    elif (n==3):
         print(" ------- ")
         print("|      o|")
         print("|   o   |")
         print("|o      |")
         print(" ------- ")
-    elif (roll==4):
+    elif (n==4):
         print(" ------- ")
         print("|o     o|")
         print("|       |")
         print("|o     o|")
         print(" ------- ")
-    elif (roll==5):
+    elif (n==5):
         print(" ------- ")
         print("|o     o|")
         print("|   o   |")
@@ -82,13 +77,12 @@ while True:
     if (bet==0):
         break
     
-    # Call dice roll function 
-    total=diceRoll(dice1,dice2,roll)
-    print(total)
+    diceRoll()
     
     # Display the two random number's and the roll
     print("\nYou rolled a {} and a {}, that's {} {}.".format(dice1,dice2,roll,name))
-    asciiArt()
+    asciiArt(dice1)
+    asciiArt(dice2)
     
     # If roll is 7 or 11 add the bet to total money 
     # and notify user of winning
@@ -115,10 +109,11 @@ while True:
     # Start infinite loop
     while True:
         resume=input("Enter any key to roll again.")
-        diceRoll(dice1,dice2,roll)
+        diceRoll()
         print("\nYou rolled a {} and a {}, that's {} {}.".format(dice1,dice2,roll,name))
-        asciiArt()
-        
+        asciiArt(dice1)
+        asciiArt(dice2)
+    
         # If roll is 7 or 11 subtract bet from total money
         # Notify user of losing and exit loop
         if (roll==7 or roll==11):
