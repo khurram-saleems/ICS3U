@@ -50,10 +50,17 @@ def asciiArt(n):
         print("|o     o|")
         print("|o     o|")
         print(" ------- ")
-money=100
-point=0
+money,point=100,0
+
 # Display title
 print("{:-^80s}".format("Las Vegas Craps Casino"))
+
+print("-----------")
+print("|    ----")
+print("| o |    |")
+print("|/|\|   o|")
+print("|/ \|    |")
+print("|    ----")
 
 # Ask user for their name
 name=input("Enter your name: ")
