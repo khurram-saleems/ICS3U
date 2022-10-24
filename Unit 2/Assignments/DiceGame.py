@@ -7,6 +7,7 @@
 #    Description | This program simulates the game Craps.
 
 import random    
+# 
 def diceRoll():
     global dice1
     global dice2 
@@ -83,9 +84,7 @@ while True:
     # If user enter's 0 as bet, exit program
     if (bet==0):
         break
-    
     diceRoll()
-    
     # Display the two random number's and the roll
     print("\nYou rolled a {} and a {}, that's {} {}.".format(dice1,dice2,roll,name))
     asciiArt(dice1)
