@@ -68,7 +68,7 @@ def asciiArt(diceVal):
         print(" ------- ")
 
 # Initialize money to 100 and point to 0
-money,point=100,0
+money=100
 print("{:*^80s}".format("Las Vegas Craps Casino"))
 
 # Display ASCII art
@@ -89,7 +89,7 @@ print("\nWelcome to Craps {}!\nYou have ${}.".format(name,money))
 
 # Start infinite loop
 while True:
-    
+    point=0
     # Start infinite loop in case user enters invalid value
     while True:
         
@@ -123,7 +123,6 @@ while True:
     if (roll==7 or roll==11):
         money+=bet
         print("You win!")
-        print("\n{}, you now have ${}.".format(name,money))
     
     # Else if roll is 2, 3, or 12 subtract the bet from total money
     # and notify user of winning
@@ -131,57 +130,57 @@ while True:
     elif (roll==2 or roll==3 or roll==12):
         money-=bet
         print("You lose!")
-        print("\n{}, you now have ${}.".format(name,money))
 
     # Under any other condition set point equal to roll
     else:
         point=roll
     
-    # Start infinite loop
-    while True:
-        resume=input("Enter any key to roll again. ")
+        # Start infinite loop
+        while True:
+            input("Press [Enter] or any key to roll again. ")
+            
+            # Calls function to generate and add dice
+            diceRoll()
+            print("\nYou rolled a {} and a {}, that's {} {}.".format(dice1,dice2,roll,name))
+            
+            # Calls function to display ASCII art 
+            # for the two dice
+            asciiArt(dice1)
+            asciiArt(dice2)
+
+            # If roll is 7 or 11 subtract bet from total money
+            # Notify user of losing and exit loop
+            if (roll==7 or roll==11):
+                money-=bet
+                print("You lose!")
+                break
+            
+            # Else if roll is point add bet to total money
+            # Notify user of winning and exit loop
+            elif (roll==point):
+                money+=bet
+                print("That's your point, you won!")
+                break
         
-        # Calls function to generate and add dice
-        diceRoll()
-        print("\nYou rolled a {} and a {}, that's {} {}.".format(dice1,dice2,roll,name))
-        
-        # Calls function to display ASCII art 
-        # for the two dice
-        asciiArt(dice1)
-        asciiArt(dice2)
-    
-        # If roll is 7 or 11 subtract bet from total money
-        # Notify user of losing and exit loop
-        if (roll==7 or roll==11):
-            money-=bet
-            print("You lose!")
-            break
-        
-        # Else if roll is point add bet to total money
-        # Notify user of winning and exit loop
-        elif (roll==point):
-            money+=bet
-            print("That's your point, you won!")
-            break
-    
     # Display money left
     print("\n{}, you now have ${}.".format(name,money))
-    
+
     # If user has no money notify that they are bankrupt
     if (money==0):
         print("You are bankrupt!")
-    
+
     elif (money>100):
         print("Wow, you have more than you started with!")
-    
+
     # Start infinite loop in case user enters invalid value 
     while True:
+
         # Ask user if they would like to roll again
         reRoll=input("\nWould you like to roll again ('y' or 'n')? ")[0].lower()
         if (reRoll=='y' or reRoll=='n'):
             break
         print("Error, invalid response. Enter 'y' or 'n'.")
-    
+
     # If user enters 'n' exit program
     if (reRoll=='n'):
         print("\n--------------")
@@ -197,4 +196,4 @@ while True:
         break
 
 # Display parting message
-print("\nThanks for playing Craps, hope you enjoyed your time {}!".format(name))
+print("Thanks for playing Craps, hope you enjoyed your time {}!\n".format(name))
