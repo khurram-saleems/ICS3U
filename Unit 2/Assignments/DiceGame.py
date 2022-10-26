@@ -172,12 +172,12 @@ while True:
 
     # If user has no money notify that they are bankrupt
     if (money==0):
-        print("You are bankrupt!")
+        print("\nYou are bankrupt!")
 
     # Else if money is greater than 100 notify that they
     # have more than original amount
     elif (money>100):
-        print("Wow, you have more than you started with!")
+        print("\nWow, you have more than you started with!")
 
     # Start infinite loop in case user enters invalid value 
     while True:
