@@ -4,30 +4,28 @@
 #     Written by | Khurram Shaikh
 #           Date | Tuesday, October 25, 2022
 #                |
-#    Description | This program asks user for their name
-#                | and bet. Generates and adds two random
-#                | numbers. User wins or loses money based 
-#                | on rolled dice. Program continues to run
-#                | or exit based on user. Simulates dice
-#                | game of Craps.
+#    Description | This program asks user for their name and bet. Generates 
+#                | and adds two random numbers. User wins or loses money 
+#                | based on rolled dice. Program continues to run or exit 
+#                | based on user. Simulates dice game of Craps.
 
 import random    
 def diceRoll():
     """Generates two random numbers from 1,6
     and adds them together.
-    """
 
-    # Globalize dice1, dice2 and roll
-    # to access and modify outside the
-    # function  
-    global dice1
-    global dice2 
-    global roll
-    dice1,dice2=random.randint(1,6),random.randint(1,6)
-    roll=dice1+dice2    
+    Returns: 
+        total: addition of random numbers from 1,6
+        rand1: random number from 1,6
+        rand2: random number from 1,6
+    """
+    rand1,rand2=random.randint(1,6),random.randint(1,6)
+    total=rand1+rand2
+    return total,rand1,rand2    
 def asciiArt(diceVal):
     """Displays ASCII art of the dice, based on 
     generated number.
+    
     diceVal: randomly generated dice values
     """
     if (diceVal==1):
@@ -67,11 +65,11 @@ def asciiArt(diceVal):
         print("|o     o|")
         print(" ------- ")
 
-# Initialize money to 100 and point to 0
-money=100
+# Initialize money to 100 and attempt to 0
+money,attempt=100,0
 print("{:*^80s}".format("Las Vegas Craps Casino"))
 
-# Display ASCII art
+# Display opening ASCII art
 print("--------------")
 print("|   ________ |")
 print("|   |Craps!| |")
@@ -90,43 +88,45 @@ print("\nWelcome to Craps {}!\nYou have ${}.".format(name,money))
 # Start infinite loop
 while True:
     point=0
+
     # Start infinite loop in case user enters invalid value
     while True:
-        
-        # Ask for amount to bet 
-        # If bet is greater than money or bet is less than 0
-        # Display error message
+
+        # Ask for betting amount
         bet=int(input("\n{}, how much would you like to bet (0 to quit)? ".format(name)))
+
+        # If bet is greater than money or bet is less than 0 
+        # display error message
         if (bet<=money and bet>=0):
             break
-        print("Error, invalid value! Enter amount that you can afford and not less than 0.")
+        print("Error, invalid value! Enter amount that you can afford and not less than 0 {}.".format(name))
     
-    # If user enter 0 as bet, exit program
+    # If bet is equal to 0 exit program
     if (bet==0):
         break
     
-    # Calls function to generate and add random numbers
-    # of two dices
-    diceRoll()
-
+    # Calls function to generate and add dice
+    roll,dice1,dice2=diceRoll()
+    
+    # Add one and store in attempt
+    attempt+=1
+    
     # Display the two random numbers and the roll
     print("\nYou rolled a {} and a {}, that's {} {}.".format(dice1,dice2,roll,name))
     
-    # Calls function while passing in the value 
-    # of two dice, displays ASCII art of dice
+    # Calls function to display ASCII dice art
+    # Rolled dice values passed in as arguments
     asciiArt(dice1)
     asciiArt(dice2)
     
     # If roll is 7 or 11 add the bet to total money 
-    # and notify user of winning
-    # Display total money
+    # and display winning message
     if (roll==7 or roll==11):
         money+=bet
         print("You win!")
     
-    # Else if roll is 2, 3, or 12 subtract the bet from total money
-    # and notify user of winning
-    # Display total money
+    # Else if roll is 2, 3 or 12 subtract the bet from total money
+    # and display losing message
     elif (roll==2 or roll==3 or roll==12):
         money-=bet
         print("You lose!")
@@ -137,33 +137,37 @@ while True:
     
         # Start infinite loop
         while True:
-            input("Press [Enter] or any key to roll again. ")
-            
+            input("Press [Enter] or any key to roll again: ")
+        
             # Calls function to generate and add dice
-            diceRoll()
+            roll,dice1,dice2=diceRoll()
+            attempt+=1
+            
+            # Display the two random numbers and the roll
             print("\nYou rolled a {} and a {}, that's {} {}.".format(dice1,dice2,roll,name))
             
-            # Calls function to display ASCII art 
-            # for the two dice
+            # Calls function to display ASCII art for the two dice
             asciiArt(dice1)
             asciiArt(dice2)
 
-            # If roll is 7 or 11 subtract bet from total money
-            # Notify user of losing and exit loop
+            # If roll is 7 or 11 subtract bet from total money 
+            # notify user of losing and exit loop
             if (roll==7 or roll==11):
                 money-=bet
                 print("You lose!")
                 break
             
             # Else if roll is point add bet to total money
-            # Notify user of winning and exit loop
+            # notify user of winning and exit loop
             elif (roll==point):
                 money+=bet
                 print("That's your point, you won!")
                 break
         
-    # Display money left
-    print("\n{}, you now have ${}.".format(name,money))
+    # Display remaining money and total rolls made
+    print("\n{}, you now have ${} and a total of {} roll".format(name,money,attempt),end="")
+    if (attempt>1):
+        print("s!")
 
     # If user has no money notify that they are bankrupt
     if (money==0):
@@ -176,7 +180,10 @@ while True:
     while True:
 
         # Ask user if they would like to roll again
-        reRoll=input("\nWould you like to roll again ('y' or 'n')? ")[0].lower()
+        # and all responses lower cased
+        reRoll=input("\n\nWould you like to roll again ('y' or 'n')? ")[0].lower()
+        
+        # If does not enter 'y' or 'n' display error message
         if (reRoll=='y' or reRoll=='n'):
             break
         print("Error, invalid response. Enter 'y' or 'n'.")
@@ -190,10 +197,10 @@ while True:
         print("|    ----    |")
         print("|   | o  |   |")
         print("|   |/|)o|   |")
-        print("|   |/ \ |   |")
+        print("|   ||/  |   |")
         print("|    ----    |")
         print("--------------")
         break
-
+        
 # Display parting message
-print("Thanks for playing Craps, hope you enjoyed your time {}!\n".format(name))
+print("\nThanks for playing Craps, hope you enjoyed your time {}!\n".format(name))
