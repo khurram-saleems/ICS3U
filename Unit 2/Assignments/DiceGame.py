@@ -1,5 +1,5 @@
 #     Assignment | Assignment 2-4
-#  Program Title | Craps!
+#  Program Title | Craps Dice Game
 #                |
 #     Written by | Khurram Shaikh
 #           Date | Tuesday, October 25, 2022
@@ -139,7 +139,7 @@ while True:
             input("Press [Enter] or any key to roll again: ")
         
             # Calls function to generate and add dice
-            roll,dice1,dice2,attempt=diceRoll()
+            roll,dice1,dice2=diceRoll()
 
             # Adds one and stores in attempt
             attempt+=1
@@ -174,6 +174,8 @@ while True:
     if (money==0):
         print("You are bankrupt!")
 
+    # Else if money is greater than 100 notify that they
+    # have more than original amount
     elif (money>100):
         print("Wow, you have more than you started with!")
 
