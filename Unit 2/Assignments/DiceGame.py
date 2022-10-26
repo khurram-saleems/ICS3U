@@ -21,7 +21,7 @@ def diceRoll():
     """
     rand1,rand2=random.randint(1,6),random.randint(1,6)
     total=rand1+rand2
-    return total,rand1,rand2    
+    return total,rand1,rand2  
 def asciiArt(diceVal):
     """Displays ASCII art of the dice, based on 
     generated number.
@@ -66,7 +66,7 @@ def asciiArt(diceVal):
         print(" ------- ")
 
 # Initialize money to 100 and attempt to 0
-money,attempt=100,0
+attempt,money=0,100
 print("{:*^80s}".format("Las Vegas Craps Casino"))
 
 # Display opening ASCII art
@@ -87,7 +87,6 @@ print("\nWelcome to Craps {}!\nYou have ${}.".format(name,money))
 
 # Start infinite loop
 while True:
-    point=0
 
     # Start infinite loop in case user enters invalid value
     while True:
@@ -107,8 +106,8 @@ while True:
     
     # Calls function to generate and add dice
     roll,dice1,dice2=diceRoll()
-    
-    # Add one and store in attempt
+
+    # Adds one and stores in attempt
     attempt+=1
     
     # Display the two random numbers and the roll
@@ -140,7 +139,9 @@ while True:
             input("Press [Enter] or any key to roll again: ")
         
             # Calls function to generate and add dice
-            roll,dice1,dice2=diceRoll()
+            roll,dice1,dice2,attempt=diceRoll()
+
+            # Adds one and stores in attempt
             attempt+=1
             
             # Display the two random numbers and the roll
