@@ -1,7 +1,10 @@
 #include <iostream>
+#include <cmath>
+#include <string>
 using namespace std;
-int main()
+int main ()
 {
-    cout<<"Hey this is some c++ output"<<endl;
+    int x;
+    int y;
     return 0;
 }
