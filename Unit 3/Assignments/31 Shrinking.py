@@ -5,7 +5,7 @@
 #           Date | Wednesday, November 2, 2022
 #                |
 #    Description | This program ask the user to enter a sentence,
-#                | then displays it with shrinked characters from
+#                | then displays it with shrunken characters from
 #                | the end and beginning. Program continues to
 #                | run until user exits, and user must enter 
 #                | correct punctuation.
