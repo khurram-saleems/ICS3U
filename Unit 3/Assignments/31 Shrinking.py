@@ -18,7 +18,7 @@ while True:
     space=""
     
     # Start infinite loop in case user enters invalid value
-    while True:
+    while True: 
         
         # Ask user for sentence 
         sentence=input("Enter a sentence:\n")
@@ -46,7 +46,7 @@ while True:
     while True:
         
         # Ask if user would like to try again
-        exitOrRun=input("Would you like to try again? Enter 'y' or 'n'. ")
+        exitOrRun=input("Would you like to try again? Enter 'y' or 'n'. ")[0].lower()
         
         # If user does not enter 'y' or 'n'
         # Display error message
