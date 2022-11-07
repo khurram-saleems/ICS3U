@@ -17,4 +17,5 @@ option=int(input())
 
 # If option is 1 display reverse order of string
 if (option==1):
-    print(sentence[::-1])
+    for i in reversed(range(len(sentence))):
+        print(sentence[i],end="")
