@@ -63,7 +63,7 @@ wrong=0
 prevGuess=""
 
 # Initialize random words as a list
-randWords="Canada Basketball Panda Bennies Fallacious Happiness Mandarin Computers Python Blanket Austria Croatia Pizza Trigonometry Snow Christmas Apples Bannana Brazil Algorithm Pseudocode".split()
+randWords="Canada Basketball Panda Bennies Fallacious Happiness Mandarin Computers Python Blanket Austria Croatia Pizza Logarithm Snow Christmas Apples Bannana Brazil Algorithm Pseudocode".split()
 category=""
 print('{:-^80s}'.format('Hangman!'))
 
@@ -113,10 +113,10 @@ while True:
         # display error message
         if (guess.isalpha() and prevGuess.find(guess)==-1 or guess=='1'):
             break
-        print("Error, invalid character! Enter a guess between 'A' and 'Z' or '1'.")
+        print("Error, invalid guess! Enter a guess between 'A' and 'Z' or '1'.")
         
         # If previous guess was made notify user
-        if (prevGuess.find(guess)!=-1):
+        if (prevGuess.find(guess)!=-1 and guess!=""):
             print("Already guessed: '{}', make another guess.".format(prevGuess))
 
     # Start counted loop to replace hidden with correct guess
@@ -135,11 +135,11 @@ while True:
         
         # Display winning message and wrong guesses
         print("You win! It took {} wrong guess".format(wrong),end="")
-        if (wrong>1):
+        if (wrong!=1):
             print("es")
         
         # Display solved puzzle
-        print("\nSolved puzzle is: \n{}".format(' '.join(puzzle)))
+        print("\n\nSolved puzzle is: \n{}".format(' '.join(puzzle)))
         break
     
     # Else if user enters an incorrect guess
@@ -164,5 +164,5 @@ while True:
     # Under any other condition display count of remaining characters 
     else:
         print("{} remaining character".format(hidden.count("_")),end="")
-        if (hidden.count("_")>1):
+        if (hidden.count("_")!=1):
             print("s")
