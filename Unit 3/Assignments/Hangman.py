@@ -68,7 +68,7 @@ category=""
 print('{:-^80s}'.format('Hangman!'))
 
 # Ask user for puzzle
-puzzle=input("Enter puzzle ('r' to select a random word): ").upper()
+puzzle=input("Enter puzzle ('R' to select a random word): ").upper()
 
 # If user enters 'R' generate a random word
 if (puzzle=='R'):
