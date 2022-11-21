@@ -63,7 +63,7 @@ wrong=0
 prevGuess=""
 
 # Initialize random words as a list
-randWords="Canada Basketball Panda Bennies Fallacious Happiness Mandarin Computers Python Blanket Austria Croatia Pizza Logarithm Snow Christmas Apples Bannana Brazil Algorithm Pseudocode".split()
+randWords="Canada Basketball Panda Bennies Fallacious Happiness Mandarin Computers Python Blanket Austria Croatia Pizza Logarithm Snow Christmas Apples Banana Brazil Algorithm Pseudocode".split()
 category=""
 print('{:-^80s}'.format('Hangman!'))
 
