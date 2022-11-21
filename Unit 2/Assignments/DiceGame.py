@@ -10,6 +10,7 @@
 #                | based on user. Simulates dice game of Craps.
 
 import random    
+
 def diceRoll():
     """Generates two random numbers from 1,6
     and adds them together.
