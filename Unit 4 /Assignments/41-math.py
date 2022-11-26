@@ -25,7 +25,7 @@ def showTitle():
     else: 
         print("{:^80s}".format("Surface area of a cone"))
 def units():
-    
+
 def areaOfTriangle(b,h):
     a=b*h/2
     return a
@@ -59,7 +59,7 @@ while True:
     print("5 - Circumference")
     print("6 - Area of circle")
     print("7 - Factorials")
-    print("9 -  Quit/Exit")
+    print("8 -  Quit/Exit")
     while True:
         option=int(input("Choose a formula: "))
         if (option>=1 and option<=5):
