@@ -4,8 +4,7 @@
 #     Written by | Khurram Shaikh
 #           Date | Thursday, October 24, 2022
 #                |
-#    Description | This program asks the user to select
-#                | a formula
+#    Description | This program 
 
 def showTitle():
     if (option==1):
@@ -25,7 +24,8 @@ def showTitle():
     else: 
         print("{:^80s}".format("Surface area of a cone"))
 def units():
-
+    u=input("Enter abbreviated unit of length: ")
+    return u
 def areaOfTriangle(b,h):
     a=b*h/2
     return a
@@ -35,8 +35,7 @@ def pythagorasTheorem(a,b,c):
 def quadraticFormula(a,b,c):
     d=(b**2)-(4*a*c)
     if (d>0):   
-        print((-b+math.sqrt(d))/(2*a))
-        print((-b-math.sqrt(d))/(2*a))
+        print("({},0) and ({},0) are the zeros.".format((-b+math.sqrt(d))/(2*a),(-b-math.sqrt(d))/(2*a)))
     elif (d==0):
         print(-b/(2*a))
     else:
@@ -47,8 +46,9 @@ def areaOfTrapezoid(a,b,h):
 def circumference(r):
     c=2*math.pi*r
     return c
-def areaCircle()
-
+def areaCircle(r):
+    A=math.pi(r**2)
+    return A
 import math
 print("{:*^80s}".format("Math Helper"))
 while True:
@@ -67,16 +67,18 @@ while True:
         print("Error, select an option between 1 and 9.")
     if (option==1):
         showTitle()
+        unit=units()
         base=float(input("Enter base: "))
         height=float(input("Enter height: "))
         areaTriangle=areaOfTriangle(base,height)
-        print("Area of the triangle is: {} units².".format(areaTriangle))
+        print("Area of the triangle is: {} {}².".format(areaTriangle,unit))
     elif (option==2):
         showTitle()
+        unit=units()
         sideA=float(input("Enter side A value: "))
         sideB=float(input("Enter side B value: "))
         sideC=pythagorasTheorem(sideA,sideB)
-        print("Length of side C is: {} units".format(sideC))
+        print("Length of side C is: {} {}.".format(sideC,unit))
     elif (option==3):
         showTitle()
         aVal=float(input("Enter A value: "))
@@ -85,17 +87,18 @@ while True:
         quadraticFormula(aVal,bVal,cVal)
     elif (option==4):
         showTitle()
+        unit=units()
         aBase=float(input("Enter base A: "))
         bBase=float(input("Enter base B: "))
         height=float(input("Enter height: "))
         areaTrapezoid=areaOfTrapezoid(aBase,bBase,height)
-        print("Area of triangle is: {} units²".format(areaTrapezoid))
+        print("Area of triangle is: {} {}.²".format(areaTrapezoid,unit))
     elif (option==5):
         showTitle()
+        unit=units()
         radius=input("Enter radius: ")
         circleLength=circumference(radius)
-        print("Length of circle is: {} units²".format(circleLength))
+        print("Length of circle is: {} {}.²".format(circleLength,unit))
     elif (option==6):
         showTitle()
-    
-
+        
