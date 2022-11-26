@@ -60,6 +60,7 @@ while True:
     print("6 - Area of circle")
     print("7 - Factorials")
     print("8 -  Quit/Exit")
+    unit=units()
     while True:
         option=int(input("Choose a formula: "))
         if (option>=1 and option<=5):
@@ -67,14 +68,12 @@ while True:
         print("Error, select an option between 1 and 9.")
     if (option==1):
         showTitle()
-        unit=units()
         base=float(input("Enter base: "))
         height=float(input("Enter height: "))
         areaTriangle=areaOfTriangle(base,height)
         print("Area of the triangle is: {} {}².".format(areaTriangle,unit))
     elif (option==2):
         showTitle()
-        unit=units()
         sideA=float(input("Enter side A value: "))
         sideB=float(input("Enter side B value: "))
         sideC=pythagorasTheorem(sideA,sideB)
@@ -87,7 +86,6 @@ while True:
         quadraticFormula(aVal,bVal,cVal)
     elif (option==4):
         showTitle()
-        unit=units()
         aBase=float(input("Enter base A: "))
         bBase=float(input("Enter base B: "))
         height=float(input("Enter height: "))
@@ -95,10 +93,12 @@ while True:
         print("Area of triangle is: {} {}.²".format(areaTrapezoid,unit))
     elif (option==5):
         showTitle()
-        unit=units()
-        radius=input("Enter radius: ")
+        radius=float(input("Enter radius: "))
         circleLength=circumference(radius)
         print("Length of circle is: {} {}.²".format(circleLength,unit))
     elif (option==6):
         showTitle()
+        radiusC=float(input("Enter radius: "))
+        areaC=areaCircle(radius)
+        print("Area of circle is: {} {}²".format(areaC,unit))
         
