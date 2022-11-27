@@ -24,7 +24,7 @@ def showTitle():
     else:
         print("{:^80s}".format("Factorials"))
 def units():
-    """Asks the user for abbreviated unit to be used in the final answer.
+    """Asks and returns preferred unit of length.
 
     Returns:
     User's preferred unit of length.
@@ -32,6 +32,16 @@ def units():
     u=input("Enter abbreviated unit of length: ")
     return u
 def areaOfTriangle(b,h):
+    """Calculate and return area of triangle,
+    given user's base and height value.
+
+    Arguments:
+        b: base of triangle
+        h: height of triangle
+    
+    Returns:
+        Area of triangle.
+    """
     a=b*h/2
     return a
 def pythagorasTheorem(a,b,c):
@@ -126,7 +136,11 @@ while True:
     
     # Else if option is 3
     elif (option==3):
+
+        # Display title of formula/math function
         showTitle()
+
+        # A
         aVal=float(input("Enter A value: "))
         bVal=float(input("Enter B value: "))
         cVal=float(input("Enter C value: "))
