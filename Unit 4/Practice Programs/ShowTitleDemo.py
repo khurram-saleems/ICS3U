@@ -1,5 +1,5 @@
 # 01 Practice Programs 1 
-# Program 1: Clear 
+# Program 1: Clear screen and display title
 #
 # Khurram Shaikh
 # Sunday, November 27, 2022
