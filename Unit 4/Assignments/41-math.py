@@ -7,6 +7,8 @@
 #    Description | This program 
 
 def showTitle():
+    """Displays title of user's selected formula.
+    """
     if (option==1):
         print("{:^80s}".format("Area of triangle"))
     elif (option==2):
@@ -19,11 +21,14 @@ def showTitle():
         print("{:^80s}".format("Circumference"))
     elif (option==6):
         print("{:^80s}".format("Area of circle"))
-    elif (option==7):
+    else:
         print("{:^80s}".format("Factorials"))
-    else: 
-        print("{:^80s}".format("Surface area of a cone"))
 def units():
+    """Asks the user for abbreviated unit to be used in the final answer.
+
+    Returns:
+    User's preferred unit of length.
+    """
     u=input("Enter abbreviated unit of length: ")
     return u
 def areaOfTriangle(b,h):
@@ -35,7 +40,7 @@ def pythagorasTheorem(a,b,c):
 def quadraticFormula(a,b,c):
     d=(b**2)-(4*a*c)
     if (d>0):   
-        print("({},0) and ({},0) are the zeros.".format((-b+math.sqrt(d))/(2*a),(-b-math.sqrt(d))/(2*a)))
+        print("({:.2f},0) and ({:.2f},0) are the zeros.".format((-b+math.sqrt(d))/(2*a),(-b-math.sqrt(d))/(2*a)))
     elif (d==0):
         print(-b/(2*a))
     else:
@@ -49,9 +54,16 @@ def circumference(r):
 def areaCircle(r):
     A=math.pi(r**2)
     return A
+def factorial(n):
+    n=math.factorial(n)
+    return n
 import math
 print("{:*^80s}".format("Math Helper"))
+
+# Start infinite loop 
 while True:
+    
+    # Display available math formulas/functions
     print("1 - Area of a triangle")
     print("2 - Pythagoras' theorem")
     print("3 - Quadratic formula")
@@ -60,24 +72,59 @@ while True:
     print("6 - Area of circle")
     print("7 - Factorials")
     print("8 -  Quit/Exit")
+    
+    # Call function asking for preferred unit
     unit=units()
+    
+    # Start infinite loop in case user enters invalid value
     while True:
+        
+        # Ask user to select a formula
         option=int(input("Choose a formula: "))
+        
+        # If option is not between 1 and 5
+        # Display error message
         if (option>=1 and option<=5):
             break
         print("Error, select an option between 1 and 9.")
+    
+    # If option is 1
     if (option==1):
+        
+        # Display title of formula/math function
         showTitle()
+        
+        # Ask user to enter base 
         base=float(input("Enter base: "))
+        
+        # Ask user for height 
         height=float(input("Enter height: "))
+        
+        # Call function to calculate and save area of triangle
         areaTriangle=areaOfTriangle(base,height)
+        
+        # Display area of triangle
         print("Area of the triangle is: {} {}².".format(areaTriangle,unit))
+    
+    # Else if option is 2
     elif (option==2):
+        
+        # Display title of formula/math function
         showTitle()
+        
+        # Ask user for side A
         sideA=float(input("Enter side A value: "))
+        
+        # Ask user for side B
         sideB=float(input("Enter side B value: "))
+        
+        # Call function to calculate length of hypotenuse
         sideC=pythagorasTheorem(sideA,sideB)
+        
+        # Display length of side C
         print("Length of side C is: {} {}.".format(sideC,unit))
+    
+    # Else if option is 3
     elif (option==3):
         showTitle()
         aVal=float(input("Enter A value: "))
@@ -101,4 +148,13 @@ while True:
         radiusC=float(input("Enter radius: "))
         areaC=areaCircle(radius)
         print("Area of circle is: {} {}²".format(areaC,unit))
-        
+    elif (option==7):
+        while True: 
+            factNum=float(input("Enter a number to find its factorial: "))
+            if (factNum<=0):
+                break
+            print("Error, invalid value. Enter a positive number.")        
+        factorialOfNum=factorial(factNum)
+        print("Factorial of {} is: ".format(factNum,factorialOfNum))
+    else:
+        break
