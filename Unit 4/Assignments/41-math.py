@@ -25,7 +25,6 @@ def showTitle():
         print("{:^80s}".format("Factorials"))
 def units():
     """Asks and returns preferred unit of length.
-
     Returns:
     User's preferred unit of length.
     """
@@ -34,7 +33,6 @@ def units():
 def areaOfTriangle(b,h):
     """Calculate and return area of triangle,
     given user's base and height value.
-
     Arguments:
         b: base of triangle
         h: height of triangle
