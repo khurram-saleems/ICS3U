@@ -2,7 +2,17 @@
 # Program 1: Clear 
 #
 # Khurram Shaikh
-# Friday, October 14, 2022
+# Sunday, November 27, 2022
 #
-# This program classifies athletes into three classes
-# entirely based on weight.
+# This program clears the screen and displays 
+# the title of program underlined. 
+
+def showTitle(title):
+    for i in range(15):
+        print()
+    print(title)
+    for x in range(len(title)):
+        print("=",end="")
+    print()
+title=input("Enter program title: ")
+showTitle(title)
