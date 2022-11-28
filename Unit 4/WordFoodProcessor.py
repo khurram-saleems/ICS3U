@@ -7,6 +7,44 @@
 # This program demonstrates different ways to manipulate a sentence. 
 # get the user's sentence 
 
+def validVal(x,y):
+    while True:
+        v=int(input("Enter a value: "))
+        if (v>=x and v<=y):
+            break
+        print('error')
+    return v
+
+def newSent():
+    text=input("Enter a sentence\n")
+
+def validateSent(text):
+    if (text[0].isupper() and (text.endswith(".") or text.endswith("!") or text.endswith("?"))): 
+            print("This is a proper sentence.") 
+    else: 
+        print("Not a proper sentence. ",end="") 
+        if (text[0].isupper()==False): 
+            print("It doesn't start with a capital. ",end="") 
+        if (not (text.endswith(".") or text.endswith("!") or text.endswith("?"))): 
+            print("It doesn't end with proper punctuation.",end="")
+
+def showCons(text):
+    consonants="bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ" 
+    for i in range(len(text)): 
+        if(consonants.find(text[i])>-1): 
+            print(text[i],end="")
+
+def showVowels(text):
+    vowels="aeiouAEIOU" 
+    for i in range(len(text)): 
+        if(vowels.find(text[i])>-1): 
+            print(text[i],end="") 
+
+def reverse(text):
+    for i in reversed(range(len(text))): 
+            print(text[i],end="") 
+
+
 text=input("Enter a sentence\n") 
 while True: 
 
@@ -22,58 +60,25 @@ while True:
     print("1 - display sentence in reverse order") 
     print("2 - display only the vowels") 
     print("3 - display only the consonants") 
-    print("4 – sentence validator") 
+    print("4 - sentence validator") 
     print("5 - enter a new sentence") 
     print("6 - quit") 
     print() 
-
-    # error trap user's choice 
-    while True: 
-        choice=int(input("Enter choice: ")) 
-        if (choice>=1 and choice <=6): 
-            break 
-        print("That is not a valid choice") 
+    choice=validVal(1,5)
+    print(choice)
     if (choice==1): 
-
-        # display the sentence in reverse 
-        for i in reversed(range(len(text))): 
-            print(text[i],end="") 
+        reverse(text)
         print() 
     elif (choice==2):
-
-        # declare string of vowels 
-        vowels="aeiouAEIOU" 
-
-        # go through characters of text one at a time checking if each is 
-        # found in my string of vowels. 
-        for i in range(len(text)): 
-            if(vowels.find(text[i])>-1): 
-                print(text[i],end="") 
+        showVowels(text)
         print() 
     elif (choice==3): 
-        
-        # declare string of consonants 
-        consonants="bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ" 
-
-        # go through characters of text one at a time checking if each is 
-        # found in my string of vowels. 
-        for i in range(len(text)): 
-            if(consonants.find(text[i])>-1): 
-                print(text[i],end="") 
+        showCons(text)
         print() 
     elif (choice==4): 
-        # verify that what the user entered is a sentence 
-        if (text[0].isupper() and (text.endswith(".") or text.endswith("!") or text.endswith("?"))): 
-            print("This is a proper sentence.") 
-        else: 
-            print("Not a proper sentence. ",end="") 
-            if (text[0].isupper()==False): 
-                print("It doesn't start with a capital. ",end="") 
-            if (not (text.endswith(".") or text.endswith("!") or text.endswith("?"))): 
-                print("It doesn't end with proper punctuation.",end="")
-            print() 
+        validateSent(text)
+        print() 
     elif (choice==5): 
-        # get a new sentence 
-        text=input("Enter a sentence\n") 
+        newSent()
     else: 
         break 
