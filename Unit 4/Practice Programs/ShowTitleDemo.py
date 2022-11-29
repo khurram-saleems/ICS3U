@@ -7,12 +7,11 @@
 # This program clears the screen and displays 
 # the title of program underlined. 
 
-def showTitle(title):
+def showTitle():
     for i in range(15):
         print()
-    print(title)
-    for x in range(len(title)):
+    print("ShowTitleDemo")
+    for x in range(len("ShowTitleDemo")):
         print("=",end="")
     print()
-title=input("Enter program title: ")
-showTitle(title)
+showTitle()
