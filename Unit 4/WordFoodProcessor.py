@@ -8,6 +8,16 @@
 # get the user's sentence 
 
 def validVal(x,y):
+    """Ask the user for a number between two
+    given numbers, and return the value.
+
+    Arguments:
+        x: starting number to check between.
+        y: ending number to check between.
+
+    Returns:
+        Valid number between arguments.
+    """
     while True:
         v=int(input("Enter a value: "))
         if (v>=x and v<=y):
@@ -16,9 +26,21 @@ def validVal(x,y):
     return v
 
 def newSent():
+    """Asks and returns user's sentence. 
+
+    Returns: 
+        User's sentence
+    """
     text=input("Enter a sentence\n")
+    return text
 
 def validateSent(text):
+    """Validates if sentence has correct punctuation,
+    given text.
+
+    Arguments:
+        text: The data to validate.
+    """
     if (text[0].isupper() and (text.endswith(".") or text.endswith("!") or text.endswith("?"))): 
             print("This is a proper sentence.") 
     else: 
@@ -29,22 +51,35 @@ def validateSent(text):
             print("It doesn't end with proper punctuation.",end="")
 
 def showCons(text):
+    """Display consonants of sentence, given text.
+
+    Arguments:
+        text: The data to display consonants of.
+    """
     consonants="bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ" 
     for i in range(len(text)): 
         if(consonants.find(text[i])>-1): 
             print(text[i],end="")
 
 def showVowels(text):
+    """Display vowels of sentence, given text.
+
+    Arguments:
+        text: The data to display the volwels of.
+    """
     vowels="aeiouAEIOU" 
     for i in range(len(text)): 
         if(vowels.find(text[i])>-1): 
             print(text[i],end="") 
 
 def reverse(text):
+    """Display the sentence reversed, given text.
+    
+    Arguments:
+        text: The data to reverse.
+    """
     for i in reversed(range(len(text))): 
             print(text[i],end="") 
-
-
 text=input("Enter a sentence\n") 
 while True: 
 
@@ -79,6 +114,6 @@ while True:
         validateSent(text)
         print() 
     elif (choice==5): 
-        newSent()
+        text=newSent()
     else: 
         break 
