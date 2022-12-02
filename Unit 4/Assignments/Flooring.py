@@ -86,7 +86,7 @@ def validDimension(question):
     """
     while True:
         val=float(input(question))
-        if (val>0):
+        if (val>=0):
             break
         print("Error, invalid dimension! Enter a value greater than 0 ")
     return val
