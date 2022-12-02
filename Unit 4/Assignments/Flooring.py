@@ -17,7 +17,7 @@ def getArea():
     Returns:
         Area of floor.
     """
-    len=validDimension("{:>42} ".format("Enter length of the room in meters:"))
+    len=validDimension("{:>42} ".format("\nEnter length of the room in meters:"))
     wid=validDimension("{:>42} ".format("Enter width of room in meters (0 to exit):"))
     area=len*wid
     return area
@@ -30,6 +30,14 @@ def getFloorCost():
         Cost per square meter.
     """
     choice=validOption(1,5)
+    print("\nPlease select a type of floor covering below:\n")
+    optionFormat="{:<15} {:>15}"
+    print("#.",optionFormat.format("Flooring Type","Cost per sq. m."))
+    print("1.",optionFormat.format("Low pile carpet","$ 19.75"))
+    print("2.",optionFormat.format("Shag rug","$ 11.24"))
+    print("3.",optionFormat.format("Parquet","$ 17.15"))
+    print("4.",optionFormat.format("Linoleum","$ 10.40"))
+    print("5.",optionFormat.format("Hardwood","$ 29.97"))
     if (choice==1):
         costPerSm=19.75
     elif (choice==2):
@@ -42,7 +50,7 @@ def getFloorCost():
         costPerSm=29.97
     return costPerSm
 
-def calculateCost(area,costPerSm):
+def calculateCost(area,costPerSm,roomCount):
     """Calculate and display price for materials,
     labour charge, sub-total, HST, and total. Given
     area and cost per square meter.
@@ -50,6 +58,7 @@ def calculateCost(area,costPerSm):
     Arguments:
         area: Area of floor.
         costPerSm: Cost per square meter based on flooring type.
+        roomCount: Total count of rooms user has claculated
 
     Returns:
         Total cost of flooring.
@@ -62,6 +71,7 @@ def calculateCost(area,costPerSm):
     print("{:<15} {:12.2f}".format("       HST",((area*costPerSm)+(6.5*area))*0.13))
     print("{:<15} {:>12}".format("","---------"))
     print("{:<15} {:12.2f}\n".format("TOTAL COST",total))
+    print("{:<15} {:12.2f}\n".format("Room Count",roomCount))
     return total
 
 def validDimension(question):
@@ -101,40 +111,28 @@ def validOption(lowVal,highVal):
 
 #### MAIN PROGRAM ####
 
-finalTotal=0
+finalTotal,roomCount=0,0
 print("{:-^80}".format("Home Depot Flooring Factory Software!"))
 print("\nWelcome to Home Depot's Flooring Software, we offer assisted calculations for")
-print("flooring options in various dimensions.")
+print("flooring options in various dimensions!\n")
 
 # Start infinite loop
 while True: 
-    admin=input("Enter 'y' if you are an admin: ").lower()
-    if (admin=='y'):
-        fileOptions=open("options.txt","x")
     
-    # Call function to calculate area 
+    # Call function to calculate area and set as area
     area=getArea()
     
     # If area is 0 exit program
     if (area==0):
         break
-    
-    # Display options for floor covering
-    print("\nPlease select a type of floor covering below:\n")
-    optionFormat="{:<15} {:>15}"
-    print("#.",optionFormat,file=optionFormat.format("Flooring Type","Cost per sq. m."))
-    print("1.",optionFormat,file=optionFormat.format("Low pile carpet","$ 19.75"))
-    print("2.",optionFormat,file=optionFormat.format("Shag rug","$ 11.24"))
-    print("3.",optionFormat,file=optionFormat.format("Parquet","$ 17.15"))
-    print("4.",optionFormat,file=optionFormat.format("Linoleum","$ 10.40"))
-    print("5.",optionFormat,file=optionFormat.format("Hardwood","$ 29.97"))
+    roomCount+=1
     
     # Call function to generate floor cost per square meter
     cstSqMeter=getFloorCost()
-    
+
     # Call function to display and calculate cost
     # Add total to final total
-    finalTotal+=calculateCost(area,cstSqMeter)
+    finalTotal+=calculateCost(area,cstSqMeter,roomCount)
 
 # If final total is greater than 0
 if (finalTotal>0):
@@ -142,6 +140,7 @@ if (finalTotal>0):
     # Display final total
     print("{:<15} {:>12}".format("","---------"))
     print("{:<15} {:12.2f}\n".format("FINAL TOTAL",finalTotal))
+    print("{:<15} {:12.2f}\n".format("Room Count",roomCount))
 
 # Display parting message
 print("Thanks for using the Home Depot Flooring Factory Software!")
