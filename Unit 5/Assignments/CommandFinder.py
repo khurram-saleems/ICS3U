@@ -32,7 +32,7 @@ def findCommand(fileName,command):
         if line.strip().startswith("#") and line.strip().find(command)!=-1:
                 commentCount+=1
     fin.close()
-    print("\nInformation for {}".format(fileName))
+    print("\nInformation for: {}\n".format(fileName))
     print("{:21s} {:3d}.".format("Line count:",lineCount))
     print("{:21s} {:3d}.".format("Comment line count:",commentCount))
     if (commandCount==0):
