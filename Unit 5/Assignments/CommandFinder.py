@@ -26,9 +26,9 @@ def findCommand(fileName,command):
         lineCount+=1
         if line.strip().find(command)!=-1 and line.strip().startswith("#")==False:
             commandCount+=1
-            print("({:3d})      {}".format(lineCount,line.strip()))
             if (commandCount%20==0):
                 input("[ENTER] to continue: ")
+            print("({:3d})      {}".format(lineCount,line.strip()))
         if line.strip().startswith("#") and line.strip().find(command)!=-1:
                 commentCount+=1
     fin.close()
