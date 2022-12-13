@@ -20,8 +20,6 @@ def findCommand(fileName,command):
     lineCount,commandCount,commentCount=0,0,0
     fin=open(fileName,"r")
     while True: 
-        if (commandCount%20==0 and commandCount!=0):
-            input("[ENTER] to continue: ")
         line=fin.readline()
         if line=="":
             break
@@ -29,6 +27,8 @@ def findCommand(fileName,command):
         if line.strip().find(command)!=-1 and line.strip().startswith("#")==False:
             commandCount+=1
             print("({:3d})      {}".format(lineCount,line.strip()))
+            if (commandCount%20==0):
+                input("[ENTER] to continue: ")
         if line.strip().startswith("#") and line.strip().find(command)!=-1:
                 commentCount+=1
     fin.close()
