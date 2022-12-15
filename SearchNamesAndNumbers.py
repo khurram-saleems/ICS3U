@@ -9,11 +9,10 @@ fileName=getFileName()
 searchName=input("Enter name to search for: ")
 fin=open(fileName,"r")
 while True:
-    name=fin.readline()
+    name=fin.readline().strip()
     if name=="":
         break
-    name=name.strip()
     phone=fin.readline().strip()
-    if name in searchName:    
+    if name.find(searchName)!=-1:    
         print("{:30} {:>20}".format(name,phone))
 
