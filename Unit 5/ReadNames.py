@@ -8,9 +8,9 @@ def getFileName():
 fileName=getFileName()
 fin=open(fileName,"r")
 while True:
-    line=fin.readline().strip()
+    line=fin.readline()
     if line=="":
         break
-    print(line)
+    print(line.strip())
 fin.close()
 
