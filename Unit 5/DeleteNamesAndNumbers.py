@@ -14,9 +14,10 @@ while True:
     namePhone=fin.readline()
     if namePhone=="":
         break
-    if namePhone.strip()==nameRemove:
+    elif namePhone.strip()==nameRemove:
         phone=fin.readline()
-    if namePhone.strip()!=nameRemove:
+    #elif namePhone.strip()!=nameRemove:
+    else:
         print(namePhone.strip(),file=fout)
 fin.close()
 fout.close()
