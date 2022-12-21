@@ -10,43 +10,39 @@ def createNewList():
     list=open("presents.txt","w")
     while True:
         name=input("Enter name (blank to exit): ")
-        if (name==''):
+        if name=="":
             break
         present=input("Enter gift to purchase: ")
         store=input("Enter store where product is available: ")
-        print(name,"\n"+present,"\n"+store,file=list)
+        list.write("{:20.20s} {:30.30s} {:20.20s}\n".format(name,present,store))
     list.close()
 
 def readFromList():
     with open("presents.txt","r") as list:
-        itemCount,lineCount=0,0
+        lineCount=0
         print("\n{:>3s}  {:20} {:30} {:20}".format("Num","Name","Gift","Store"))
         while True:
-            name=list.readline()
-            if name=="":
+            recipientInfo=list.readline()
+            if recipientInfo=="":
                 break
             lineCount+=1
-            name=name.strip()
-            present=list.readline().strip()
-            if (present!=""):
-                itemCount+=1
-            store=list.readline().strip()
-            print("{:3}. {:20.20s} {:30.30s} {:20.20s}".format(lineCount,name,present,store))
+            print("{:3}. {}".format(lineCount,recipientInfo.strip()))
             if (lineCount%20==0):
                 input("Press [Enter] to return to the menu: ")
-    print("Total of {} present".format(itemCount),end="")
-    if (itemCount>1):
+    print("Total of {} present".format(lineCount),end="")
+    if (lineCount>1):
         print("s!")
 
 def addToList():
     list=open("presents.txt","a")
     while True:
         name=input("Enter name (blank to exit): ")
-        if (name==''):
+        if name=="":
             break
         present=input("Enter gift to purchase: ")
         store=input("Enter store where product is available: ")
-        print(name,"\n"+present,"\n"+store,file=list)
+        list.write("{:20.20s} {:30.30s} {:20.20s}\n".format(name,present,store))
+    list.close()
 
 def getYOrN(prompt):
     while True:
@@ -56,28 +52,24 @@ def getYOrN(prompt):
         print("Error, enter either 'y' or 'n'!")
 
 def deleteFromList():
-    name=input("Enter name to delete items for: ")
-    allOrSelective=input("Would you like to remove 'A'll items or 'S'elective? ").upper()
+    nameRmve=input("Enter name to delete items for: ")
+    userChoice=input("Would you like to remove 'A'll items or 'S'elective? ").upper()
     oldList=open("presents.txt","r")
     newList=open("temp.txt","w")
-    while True:
-        namePresentStore=oldList.readline()
-        if namePresentStore=="":
-            break 
-        if (namePresentStore.strip()==name):    
-            present=oldList.readline().strip()
-            store=oldList.readline()
-            if (allOrSelective=="S"):
-                deleteItem=getYOrN("Would you like to delete {} for {} ('y' or 'n')? ".format(present,name.strip()))
-        if (namePresentStore.strip()!=name):
-            if (deleteItem=='y'):
-                print(namePresentStore.strip(),file=newList)
-            if (allOrSelective=="A"):
-                print(namePresentStore.strip(),file=newList)
-    oldList.close()
-    newList.close()
-    os.remove("presents.txt")
-    os.rename("temp.txt","presents.txt")
+    if (userChoice=="A"):
+        while True:
+            line=oldList.readline()
+            if line=="":
+                break
+            if line.find(nameRmve)==-1:
+                newList.write(line)
+    if (userChoice=="S"):
+        while True:
+            line=oldList.readline()
+            if line=="":
+                break
+            if line.find(nameRmve)==-1:
+                yOrN=getYOrN("Delete {} ('y' or 'n')? ".format(line))
 
 import os
 createNewList()
