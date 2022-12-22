@@ -4,16 +4,30 @@
 #     Written by | Khurram Shaikh
 #           Date | Thursday, December 22, 2022
 #                |
-#    Description | This program 
+#    Description | This program manages a list of gift recipients 
+#                | and the gifts that need to be purchased for 
+#                | them. It allows users to create a new list, 
+#                | add to the list, read from the list, and 
+#                | delete items from the list. The list is stored 
+#                | in a text file and consists of the recipient's 
+#                | name, the gift to be purchased, and the store 
+#                | where the gift can be purchased. 
 
-def createNewList():
-    lineCount=getLineCount()
+def createNewList(listName):
+    """Creates a new gift list with the given name.
+    If the list already exists, the user is prompted 
+    to delete the existing content.
+
+    Arguments:
+        listName: Name of the gift list to create.
+    """
+    lineCount=getLineCount(listName)
     if (lineCount>0):
         delete=getYOrN("File contains existing content, delete and write ('y' or 'n')? ")
         if (delete=="n"):
             pressEnter()
             return
-    fout=open("presents.txt","w")
+    fout=open(listName,"w")
     lineCount=0
     while True:
         name=input("Enter name (blank to exit): ")
@@ -30,12 +44,18 @@ def createNewList():
             print("s!")
     pressEnter()
 
-def readFromList():
-    lineCount=getLineCount()
+def readFromList(listName):
+    """Reads the gift list with the given name and
+    displays the content.
+
+    Arguments:
+        listName: Name of the gift list to read.
+    """
+    lineCount=getLineCount(listName)
     if (lineCount==0):
         print("No items within the list.")
     else:
-        with open("presents.txt","r") as fin:
+        with open(listName,"r") as fin:
             lineCount=0
             print("\n{:>3s}  {:20} {:30} {:20}".format("Num","Name","Gift","Store"))
             while True:
@@ -51,8 +71,14 @@ def readFromList():
                 print("s!")
     pressEnter()
 
-def addToList():
-    fout=open("presents.txt","a")
+def addToList(listName):
+    """Adds a new entry to the gift list with
+    the given name.
+
+    Arguments:
+        listName: Name of the gift list to add to.
+    """
+    fout=open(listName,"a")
     while True:
         name=input("Enter name (blank to exit): ")
         if (name==""):
@@ -61,21 +87,27 @@ def addToList():
         store=input("Enter store where product is available: ")
         fout.write("{:20.20s} {:30.30s} {:20.20s}\n".format(name,present,store))
     fout.close()
-    lineCount=getLineCount()
+    lineCount=getLineCount(listName)
     if (lineCount!=0):
         print("After adding to list: total of {} item".format(lineCount),end="")
         if (lineCount>1):
             print("s!")
     pressEnter()
 
-def deleteFromList():
-    lineCount=getLineCount()
+def deleteFromList(listName):
+    """Deletes all or selective items
+    from a list of presents.
+
+    Arguments: 
+        listName: The name of file containing the list of presents.
+    """
+    lineCount=getLineCount(listName)
     if (lineCount==0):
         print("No items within the list.")
     else:
         nameRmve=input("Enter name to delete items for: ")
         allOrSelect=input("'A'll items or 'S'elective? ").upper()
-        fin=open("presents.txt","r")
+        fin=open(listName,"r")
         fout=open("temp.txt","w")
         deleteCount=0
         while True:
@@ -108,8 +140,8 @@ def deleteFromList():
                 print("s!")
     pressEnter()
 
-def searchList():
-    lineCount=getLineCount()
+def searchList(listName):
+    lineCount=getLineCount(listName)
     if (lineCount==0):
         print("No items within the list.")
     else:
@@ -120,7 +152,7 @@ def searchList():
         else:
             search=input("Enter store to search for: ")
             print("\nPresents to purchase at {}:".format(search))
-        fin=open("presents.txt","r")
+        fin=open(listName,"r")
         searchCount=0
         while True:
             line=fin.readline()
@@ -135,11 +167,45 @@ def searchList():
         fin.close()
     pressEnter()
 
-def clearList():
+def clearList(fileName):
     open("temp.txt","w").close()
-    os.remove("presents.txt")
-    os.rename("temp.txt","presents.txt")
+    os.remove(fileName)
+    os.rename("temp.txt",fileName)
     pressEnter()
+
+def getNewList():
+    fName=input("Enter a list name: ")
+    open(fName,"w").close()
+    if (fName.endswith(".txt")==False):
+        fName+=".txt"
+    if os.path.exists(fName)==False:
+        fileList=open("listInventory.txt","a")
+        fileList.write(fName+"\n")
+    if (fName==""):
+        open("presents.txt","w").close()
+        fName="presents.txt"
+    return fName
+
+def chooseList():
+    fileList=open("listInventory.txt","r")
+    lineCount=0
+    while True:
+        nameList=fileList.readline()
+        if nameList=="":
+            break
+        lineCount+=1
+        print("{}. {}".format(lineCount,nameList.strip()))
+    newListYOrN=getYOrN("Would you like to create a new list and add it ('y' or 'n')? ")
+    if (newListYOrN=="y"):
+        listName=getNewList()
+    while True:
+        listName=input("Enter name of list to switch to: ")
+        if (os.path.exists(listName)==True):
+            break
+        print("File does not exist, enter a valid file name.")
+    return listName
+
+def modifyItem(listName):
 
 def validVal(x,y):
     """Ask user for an option between given parameters,
@@ -174,8 +240,8 @@ def getYOrN(prompt):
         print("Error, enter either 'y' or 'n'!")
     return yOrN
 
-def getLineCount():
-    fin=open("presents.txt","r")
+def getLineCount(listName):
+    fin=open(listName,"r")
     lineCount=0
     while True:
         line=fin.readline()
@@ -191,6 +257,9 @@ def pressEnter():
 ### MAIN PROGRAM ###
 
 import os
+if (os.path.exists("listInventory.txt")==False):
+    open("listInventory.txt","w").close()
+listName=getNewList()
 print("{:*^80s}".format("The Present Manager"))
 print("{:^80s}".format("====================="))
 while True:
@@ -199,21 +268,25 @@ while True:
     print("3 - Add to list")
     print("4 - Delete from list")
     print("5 - Search through list")
-    print("6 - Clear list")
-    print("7 - Exit")
+    print("6 - Switch list")
+    print("7 - Modify Item")
+    print("7 - Clear list")
+    print("8 - Exit")
     option=validVal(1,7)
     if (option==1):
-        createNewList()
+        createNewList(listName)
     elif(option==2):
-        readFromList()
+        readFromList(listName)
     elif(option==3):
         addToList()
     elif(option==4):
-        deleteFromList()
+        deleteFromList(listName)
     elif(option==5):
         searchList()
     elif(option==6):
-        clearList()
+        listName=chooseList()
+    elif (option==7):
+        clearList(listName)
     else:
         print("\nThanks for using The Present Manager!")
         break
