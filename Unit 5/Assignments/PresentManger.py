@@ -25,7 +25,7 @@ def createNewList():
         lineCount+=1
     fout.close()
     if (lineCount!=0):
-        print("Total of {} item".format(lineCount),end="")
+        print("After writing: total of {} item".format(lineCount),end="")
         if (lineCount>1):
             print("s!")
     pressEnter()
@@ -46,7 +46,7 @@ def readFromList():
                 print("{:3}. {}".format(lineCount,recipientInfo.strip()))
                 if (lineCount%20==0):
                     pressEnter()
-            print("Total of {} item".format(lineCount),end="")
+            print("After displaying: total of {} item".format(lineCount),end="")
             if (lineCount>1):
                 print("s!")
     pressEnter()

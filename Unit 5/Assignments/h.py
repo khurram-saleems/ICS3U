@@ -1,1 +1,0 @@
-print("{:>3s} {:20} {:30} {:20}".format("Num","Name","Gift","Store"))
