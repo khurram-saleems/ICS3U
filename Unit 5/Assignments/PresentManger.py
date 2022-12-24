@@ -131,8 +131,8 @@ def deleteFromList(listName):
                 print("s!")
         fin.close()
         fout.close()
-        os.remove("presents.txt")
-        os.rename("temp.txt","presents.txt")
+        os.remove(listName)
+        os.rename("temp.txt",listName)
         lineCount=getLineCount()
         if (lineCount!=0):
             print("\nAfter deleting for {}: total of {} item".format(nameRmve,lineCount),end="")
