@@ -39,7 +39,7 @@ def createNewList(listName):
     # Open list to write 
     fout=open(listName,"w")
     lineCount=0
-    
+    print("New list created. Start adding item information:")
     # Start infinite loop 
     while True:
         
@@ -464,16 +464,36 @@ def modifyItem(listName):
             
             # If user enter's 'y'
             if (chngeYOrN=="y"):
+                
+                # Ask user for new gift
                 newGift=input("What is the new gift? ")
+                
+                # Ask user for new store 
                 newStore=input("What is the store where the gift can be purchased? ")
+                
+                # Set new line to modified new gift and store
                 newLine="{:20.20s} {:30.30s} {:20.20s}".format(nameChangeGift,newGift,newStore)
+                
+                # Set contents of file to modified version
                 lineTotal=lineTotal.replace(line.strip(),newLine.strip())
+                
+                # Close file from reading 
                 fin.close()
+                
+                # Open file to write 
                 fout=open(listName,"w")
+                
+                # Write modified file contents
                 fout.write(lineTotal)
+                
+                # Close file
                 fout.close()
+                
+                # Notify that changes have been made
+                # Exit loop
                 print("\nChanges have been made to the list.")
                 break
+    fin.close()
 
 def validVal(x,y):
     """Ask user for an option between given parameters,
@@ -528,15 +548,33 @@ def getLineCount(listName):
     """Get line count for given list.
 
     Arguments:
-        listName: 
+        listName: Name of list to get line count of.
+        
+    Returns:
+        Line count of list.
     """
+    
+    # Open list to read
     fin=open(listName,"r")
+    
+    # Set line count to 0
     lineCount=0
+    
+    # Start infinite loop
     while True:
+        
+        # Read line from file
         line=fin.readline()
+        
+        # If line is blank 
+        # Exit loop
         if (line==""):
             break
+        
+        # Add one to to line count
         lineCount+=1
+    
+    # Close file
     fin.close()
     return lineCount
 
@@ -569,27 +607,64 @@ while True:
     print("3 - Add to list")
     print("4 - Delete from list")
     print("5 - Search through list")
-    print("6 - Switch list")
+    print("6 - Switch to a different list")
     print("7 - Modify Item")
     print("8 - Clear list")
     print("9 - Exit")
+    
+    # Call function to get option between 1 and 9
     option=validVal(1,9)
+    
+    # If option is 1
     if (option==1):
+        
+        # Call function to create new list
         createNewList(listName)
+    
+    # Else if option is 2
     elif(option==2):
+        
+        # Call function read from list
         readFromList(listName)
+    
+    # Else if option 3
     elif(option==3):
+        
+        # Call function to add 
         addToList(listName)
+    
+    # Else if option 4
     elif(option==4):
+        
+        # Call function to delete from list
         deleteFromList(listName)
+    
+    # Else if option is 5
     elif(option==5):
-        searchList()
+        
+        # Call function to search list
+        searchList(listName)
+    
+    # Else if option is 6
     elif(option==6):
+        
+        # Call function to get name of list
         listName=chooseList()
+    
+    # Else if optiopn is 7
     elif (option==7):
+        
+        # Call function to modify item
         modifyItem(listName)
+    
+    # Else if option is 8
     elif (option==8):
+        
+        # Call function to clear list
         clearList(listName)
+    
+    # Else display parting message and then
+    # Exit program
     else:
         print("\nThanks for using The Present Manager!")
         break
