@@ -1,2 +1,0 @@
-presents.txt
-numberNames.txt

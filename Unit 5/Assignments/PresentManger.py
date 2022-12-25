@@ -44,7 +44,7 @@ def createNewList(listName):
     while True:
         
         # Ask user for name and exit loop 
-        name=input("Enter name (blank to exit): ")
+        name=input("Enter person's name (blank to exit): ")
         
         # If name is blank exit loop
         if (name==""):
@@ -128,12 +128,13 @@ def addToList(listName):
     
     # Open file to append
     fout=open(listName,"a")
-    
+    print("Start adding item information:")
+   
     # Start infinite loop
     while True:
         
         # Ask user for name
-        name=input("Enter name (blank to exit): ")
+        name=input("Enter person's name (blank to exit): ")
         
         # If name is blank exit loop
         if (name==""):
@@ -244,7 +245,7 @@ def deleteFromList(listName):
         os.rename("temp.txt",listName)
         
         # Call line count function
-        lineCount=getLineCount()
+        lineCount=getLineCount(listName)
         
         # If line count is not 0
         # Display total items after writing
@@ -331,6 +332,7 @@ def clearList(fileName):
 
     # Create file
     open(fileName,"w").close()
+    print("List contents have been erased!")
     pressEnter()
 
 def getNewList():
@@ -345,7 +347,7 @@ def getNewList():
     """
     
     # Ask for list name
-    fName=input("Enter a list name: ")
+    fName=input("Enter a list's file name (blank for default): ")
     
     # If blank set to "presents.txt"
     if (fName==""):
@@ -355,12 +357,13 @@ def getNewList():
         
         # Set file name to "presents.txt"
         fName="presents.txt"
-    
-    # If list name does not end with ".txt"
-    # Add it to the end of entered file name
-    if (fName.endswith(".txt")==False):
-        fName+=".txt"
-    
+    else:
+        
+        # If list name does not end with ".txt"
+        # Add it to the end of entered file name
+        if (fName.endswith(".txt")==False):
+            fName+=".txt"
+        
     # Create file name
     open(fName,"a").close()
     
