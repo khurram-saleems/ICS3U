@@ -364,10 +364,9 @@ def getNewList():
     # Create file name
     open(fName,"a").close()
     
-    # If list exists add it to the directory containing all file names
-    if os.path.exists(fName)==False:
-        fileList=open("listInventory.txt","a")
-        fileList.write(fName+"\n")
+    # Add file to the directory containing all file names
+    fileList=open("listInventory.txt","a")
+    fileList.write(fName+"\n")
     return fName
 
 def chooseList():
