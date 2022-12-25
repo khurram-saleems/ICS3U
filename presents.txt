@@ -1,2 +1,3 @@
-Name: Khurram    Present: AP         Store: Rolex
-Name:            Present:            Store:
+Khurram              Bughatti Chiron                Bughatti Dealership 
+Saad                 AP                             Rolex               
+Aiko                 Makeup                         Bath and body       
