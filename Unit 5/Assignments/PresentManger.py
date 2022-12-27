@@ -164,7 +164,7 @@ def addToList(listName):
     pressEnter()
 
 def deleteFromList(listName):
-    """Deletes all or selective items
+    """Deletes all or specific items
     from a list of presents.
 
     Arguments: 
@@ -185,7 +185,7 @@ def deleteFromList(listName):
         nameRmve=input("Enter name to delete items for: ")
         
         # Ask to delete all items or specific
-        allOrSelect=input("'A'll items or 'S'elective? ").upper()
+        allOrSelect=input("'A'll items or 'S'pecific? ").upper()
         
         # Open file to read
         fin=open(listName,"r")
@@ -274,8 +274,8 @@ def searchList(listName):
     # Else search for item within list
     else:
         
-        # Ask user to serach by person or store
-        personOrStore=input("Search by 'P'erson or 'S'tore? ").upper()
+        # Ask user to search by person or store
+        personOrStore=input("Search by Person or Store ('P' or 'S')? ").upper()
         
         # If user would like to search by person
         if (personOrStore=="P"):
@@ -313,11 +313,11 @@ def searchList(listName):
                 
                 # If user searched by person display item and store
                 if (personOrStore=="P"):
-                    print("{:5}. {} (at {})".format(searchCount,line[21:50].strip(),line[51:70].strip()))
+                    print("{:5}. {} (at {})".format(searchCount,line[20:51].strip(),line[50:71].strip()))
                 
                 # Else display item and person
                 else:
-                    print("{:5}. {} (for {})".format(searchCount,line[21:50].strip(),line[:20].strip()))
+                    print("{:5}. {} (for {})".format(searchCount,line[20:51].strip(),line[:21].strip()))
         
         # Close file
         fin.close()
@@ -432,7 +432,7 @@ def modifyItem(listName):
         listName: The name of the list file to be modified.
     """
     
-    # Ask user whome they would like to change the gift for
+    # Ask user whom they would like to change the gift for
     nameChangeGift=input("Who would you like to change the gift for? ")
     lineTotal=""
     
@@ -448,7 +448,7 @@ def modifyItem(listName):
     # Open file to read
     fin=open(listName,"r")
     
-    # Start infinte loop
+    # Start infinite loop
     while True: 
         
         # Read line from file 
@@ -653,7 +653,7 @@ while True:
         # Call function to get name of list
         listName=chooseList()
     
-    # Else if optiopn is 7
+    # Else if option is 7
     elif (option==7):
         
         # Call function to modify item
