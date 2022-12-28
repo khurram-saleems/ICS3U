@@ -39,12 +39,12 @@ def createNewList(listName):
     # Open list to write 
     fout=open(listName,"w")
     lineCount=0
-    print("New list created. Start adding item information:")
+    
     # Start infinite loop 
     while True:
         
         # Ask user for name and exit loop 
-        name=input("Enter person's name (blank to exit): ")
+        name=input("Enter name (blank to exit): ")
         
         # If name is blank exit loop
         if (name==""):
@@ -128,13 +128,12 @@ def addToList(listName):
     
     # Open file to append
     fout=open(listName,"a")
-    print("Start adding item information:")
-   
+    
     # Start infinite loop
     while True:
         
         # Ask user for name
-        name=input("Enter person's name (blank to exit): ")
+        name=input("Enter name (blank to exit): ")
         
         # If name is blank exit loop
         if (name==""):
@@ -164,7 +163,7 @@ def addToList(listName):
     pressEnter()
 
 def deleteFromList(listName):
-    """Deletes all or specific items
+    """Deletes all or selective items
     from a list of presents.
 
     Arguments: 
@@ -185,7 +184,7 @@ def deleteFromList(listName):
         nameRmve=input("Enter name to delete items for: ")
         
         # Ask to delete all items or specific
-        allOrSelect=input("'A'll items or 'S'pecific? ").upper()
+        allOrSelect=input("'A'll items or 'S'elective? ").upper()
         
         # Open file to read
         fin=open(listName,"r")
@@ -245,7 +244,7 @@ def deleteFromList(listName):
         os.rename("temp.txt",listName)
         
         # Call line count function
-        lineCount=getLineCount(listName)
+        lineCount=getLineCount()
         
         # If line count is not 0
         # Display total items after writing
@@ -274,8 +273,8 @@ def searchList(listName):
     # Else search for item within list
     else:
         
-        # Ask user to search by person or store
-        personOrStore=input("Search by Person or Store ('P' or 'S')? ").upper()
+        # Ask user to serach by person or store
+        personOrStore=input("Search by 'P'erson or 'S'tore? ").upper()
         
         # If user would like to search by person
         if (personOrStore=="P"):
@@ -313,11 +312,11 @@ def searchList(listName):
                 
                 # If user searched by person display item and store
                 if (personOrStore=="P"):
-                    print("{:5}. {} (at {})".format(searchCount,line[20:51].strip(),line[50:71].strip()))
+                    print("{:5}. {} (at {})".format(searchCount,line[21:50].strip(),line[51:70].strip()))
                 
                 # Else display item and person
                 else:
-                    print("{:5}. {} (for {})".format(searchCount,line[20:51].strip(),line[:21].strip()))
+                    print("{:5}. {} (for {})".format(searchCount,line[21:50].strip(),line[:20].strip()))
         
         # Close file
         fin.close()
@@ -332,7 +331,6 @@ def clearList(fileName):
 
     # Create file
     open(fileName,"w").close()
-    print("List contents have been erased!")
     pressEnter()
 
 def getNewList():
@@ -347,7 +345,7 @@ def getNewList():
     """
     
     # Ask for list name
-    fName=input("Enter a list's file name (blank for default): ")
+    fName=input("Enter a list name: ")
     
     # If blank set to "presents.txt"
     if (fName==""):
@@ -357,19 +355,19 @@ def getNewList():
         
         # Set file name to "presents.txt"
         fName="presents.txt"
-    else:
-        
-        # If list name does not end with ".txt"
-        # Add it to the end of entered file name
-        if (fName.endswith(".txt")==False):
-            fName+=".txt"
-        
+    
+    # If list name does not end with ".txt"
+    # Add it to the end of entered file name
+    if (fName.endswith(".txt")==False):
+        fName+=".txt"
+    
     # Create file name
     open(fName,"a").close()
     
-    # Add file to the directory containing all file names
-    fileList=open("listInventory.txt","a")
-    fileList.write(fName+"\n")
+    # If list exists add it to the directory containing all file names
+    if os.path.exists(fName)==False:
+        fileList=open("listInventory.txt","a")
+        fileList.write(fName+"\n")
     return fName
 
 def chooseList():
@@ -432,7 +430,7 @@ def modifyItem(listName):
         listName: The name of the list file to be modified.
     """
     
-    # Ask user whom they would like to change the gift for
+    # Ask user whome they would like to change the gift for
     nameChangeGift=input("Who would you like to change the gift for? ")
     lineTotal=""
     
@@ -448,7 +446,7 @@ def modifyItem(listName):
     # Open file to read
     fin=open(listName,"r")
     
-    # Start infinite loop
+    # Start infinte loop
     while True: 
         
         # Read line from file 
@@ -467,35 +465,33 @@ def modifyItem(listName):
             # If user enter's 'y'
             if (chngeYOrN=="y"):
                 
-                # Ask user for new gift
+                # Ask for new gift
                 newGift=input("What is the new gift? ")
-                
-                # Ask user for new store 
+
+                # Ask for new store where gift can be purchased
                 newStore=input("What is the store where the gift can be purchased? ")
                 
-                # Set new line to modified new gift and store
+                # Set new line to field sized name, new gift and new store
                 newLine="{:20.20s} {:30.30s} {:20.20s}".format(nameChangeGift,newGift,newStore)
                 
-                # Set contents of file to modified version
+                # Replace new old line with new line
                 lineTotal=lineTotal.replace(line.strip(),newLine.strip())
                 
-                # Close file from reading 
+                # Close file from reading
                 fin.close()
                 
-                # Open file to write 
+                # Open file to write
                 fout=open(listName,"w")
                 
-                # Write modified file contents
+                # Write contents of file with changed line 
                 fout.write(lineTotal)
                 
-                # Close file
+                # Close file from writing
                 fout.close()
                 
-                # Notify that changes have been made
-                # Exit loop
+                # Display that changes have been made and exit loop
                 print("\nChanges have been made to the list.")
                 break
-    fin.close()
 
 def validVal(x,y):
     """Ask user for an option between given parameters,
@@ -550,33 +546,15 @@ def getLineCount(listName):
     """Get line count for given list.
 
     Arguments:
-        listName: Name of list to get line count of.
-        
-    Returns:
-        Line count of list.
+        listName: 
     """
-    
-    # Open list to read
     fin=open(listName,"r")
-    
-    # Set line count to 0
     lineCount=0
-    
-    # Start infinite loop
     while True:
-        
-        # Read line from file
         line=fin.readline()
-        
-        # If line is blank 
-        # Exit loop
         if (line==""):
             break
-        
-        # Add one to to line count
         lineCount+=1
-    
-    # Close file
     fin.close()
     return lineCount
 
@@ -609,64 +587,27 @@ while True:
     print("3 - Add to list")
     print("4 - Delete from list")
     print("5 - Search through list")
-    print("6 - Switch to a different list")
+    print("6 - Switch list")
     print("7 - Modify Item")
     print("8 - Clear list")
     print("9 - Exit")
-    
-    # Call function to get option between 1 and 9
     option=validVal(1,9)
-    
-    # If option is 1
     if (option==1):
-        
-        # Call function to create new list
         createNewList(listName)
-    
-    # Else if option is 2
     elif(option==2):
-        
-        # Call function read from list
         readFromList(listName)
-    
-    # Else if option 3
     elif(option==3):
-        
-        # Call function to add 
         addToList(listName)
-    
-    # Else if option 4
     elif(option==4):
-        
-        # Call function to delete from list
         deleteFromList(listName)
-    
-    # Else if option is 5
     elif(option==5):
-        
-        # Call function to search list
-        searchList(listName)
-    
-    # Else if option is 6
+        searchList()
     elif(option==6):
-        
-        # Call function to get name of list
         listName=chooseList()
-    
-    # Else if option is 7
     elif (option==7):
-        
-        # Call function to modify item
         modifyItem(listName)
-    
-    # Else if option is 8
     elif (option==8):
-        
-        # Call function to clear list
         clearList(listName)
-    
-    # Else display parting message and then
-    # Exit program
     else:
         print("\nThanks for using The Present Manager!")
         break
