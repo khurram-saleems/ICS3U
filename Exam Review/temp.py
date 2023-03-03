@@ -1,2 +1,3 @@
-text="12345678910"
-print(text[2:7])    
+n=int(input())
+for i in range(n):
+    
